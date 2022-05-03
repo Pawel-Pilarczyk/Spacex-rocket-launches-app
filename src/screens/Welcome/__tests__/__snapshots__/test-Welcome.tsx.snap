@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shoukd render correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "justifyContent": "center",
+      "paddingHorizontal": 20,
+      "paddingVertical": 41,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#000",
+          "fontSize": 80,
+          "fontWeight": "800",
+        },
+      ]
+    }
+  >
+    Welcome
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "marginBottom": 66,
+          "marginTop": 33,
+          "textAlign": "center",
+        },
+        Object {
+          "color": "#000",
+          "fontSize": 36,
+          "fontWeight": "400",
+        },
+      ]
+    }
+  >
+    Follow the latest SpaceX rocket launches with just one click
+  </Text>
+  <rocket-svgrepo-com.svg
+    height="60%"
+    testID="rocketSVG"
+    width="75%"
+  />
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#1C6DD0",
+        "borderRadius": 26,
+        "flex": 1,
+        "height": 92,
+        "justifyContent": "center",
+        "marginTop": "auto",
+        "maxHeight": 92,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          undefined,
+          Object {
+            "color": "#fff",
+            "fontSize": 36,
+            "fontWeight": "400",
+          },
+        ]
+      }
+    >
+      Let's get Started!
+    </Text>
+  </View>
+</View>
+`;

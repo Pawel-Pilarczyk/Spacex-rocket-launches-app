@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  nativeID="animatedComponent"
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID="itemID"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#08458F",
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "height": 82,
+          "justifyContent": "space-between",
+          "marginVertical": 8,
+          "paddingHorizontal": 20,
+        },
+        Object {
+          "backgroundColor": "#22C55E",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <starting-rocket.svg
+        height={25}
+        testID="rocketSuccess"
+        width={25}
+      />
+      <Text
+        style={
+          Array [
+            Object {
+              "marginLeft": 20,
+            },
+            Object {
+              "color": "#fff",
+              "fontSize": 28,
+              "fontWeight": "800",
+            },
+          ]
+        }
+      >
+        TEST MISSION
+      </Text>
+    </View>
+    <arrow.svg
+      testID="arrowIcon"
+    />
+  </View>
+</View>
+`;

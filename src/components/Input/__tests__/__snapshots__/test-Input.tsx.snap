@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render correctly 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "borderColor": "#1C6DD0",
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 96,
+        "justifyContent": "center",
+        "paddingHorizontal": 20,
+      },
+    ]
+  }
+>
+  <TextInput
+    autoFocus={false}
+    maxLength={100}
+    onChangeText={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    value=""
+  />
+</View>
+`;

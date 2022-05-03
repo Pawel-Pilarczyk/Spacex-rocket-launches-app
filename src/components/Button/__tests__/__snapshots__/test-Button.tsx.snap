@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  nativeID="animatedComponent"
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#1C6DD0",
+      "borderRadius": 26,
+      "flex": 1,
+      "height": 92,
+      "justifyContent": "center",
+      "maxHeight": 92,
+      "opacity": 1,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#fff",
+          "fontSize": 36,
+          "fontWeight": "400",
+        },
+      ]
+    }
+  >
+    Test
+  </Text>
+</View>
+`;

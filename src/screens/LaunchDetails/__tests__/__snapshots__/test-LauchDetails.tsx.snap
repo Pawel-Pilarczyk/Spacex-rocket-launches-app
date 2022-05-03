@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "paddingHorizontal": 20,
+      "paddingVertical": 16,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "800",
+            },
+          ]
+        }
+      >
+        Mission name
+      </Text>
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "400",
+            },
+          ]
+        }
+      >
+        TEST MISSION
+      </Text>
+      <View
+        style={
+          Object {
+            "height": 41,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <View>
+          <Text
+            style={
+              Array [
+                undefined,
+                Object {
+                  "color": "#000",
+                  "fontSize": 44,
+                  "fontWeight": "800",
+                },
+              ]
+            }
+          >
+            Mission status
+          </Text>
+          <Text
+            style={
+              Array [
+                undefined,
+                Object {
+                  "color": "#22C55E",
+                  "fontSize": 44,
+                  "fontWeight": "800",
+                },
+              ]
+            }
+          >
+            Success
+          </Text>
+        </View>
+        <starting-rocket.svg />
+      </View>
+      <View
+        style={
+          Object {
+            "height": 41,
+          }
+        }
+      />
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "800",
+            },
+          ]
+        }
+      >
+        Mission date
+      </Text>
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "400",
+            },
+          ]
+        }
+      >
+        Thu Mar 31 2022 14:56:49 GMT+0200
+      </Text>
+      <View
+        style={
+          Object {
+            "height": 41,
+          }
+        }
+      />
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "800",
+            },
+          ]
+        }
+      >
+        Rocket Name
+      </Text>
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "400",
+            },
+          ]
+        }
+      >
+        TEST ROCKET
+      </Text>
+      <View
+        style={
+          Object {
+            "height": 41,
+          }
+        }
+      />
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "800",
+            },
+          ]
+        }
+      >
+        Launch site
+      </Text>
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#000",
+              "fontSize": 44,
+              "fontWeight": "400",
+            },
+          ]
+        }
+      >
+        TEST SIDE
+      </Text>
+      <View
+        style={
+          Object {
+            "height": 41,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginTop": "auto",
+          }
+        }
+      >
+        
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

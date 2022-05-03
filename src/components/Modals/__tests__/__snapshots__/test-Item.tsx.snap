@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render correctly 1`] = `
+<Modal
+  animationType="fade"
+  hardwareAccelerated={false}
+  testID="modalLoader"
+  transparent={true}
+  visible={true}
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(256, 256, 256, 0.9)",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      color="#1C6DD0"
+      size="large"
+      testID="loader"
+    />
+    <Text
+      style={
+        Array [
+          undefined,
+          Object {
+            "color": "#000",
+            "fontSize": 48,
+            "fontWeight": "400",
+          },
+        ]
+      }
+    >
+      Loading
+    </Text>
+  </View>
+</Modal>
+`;
