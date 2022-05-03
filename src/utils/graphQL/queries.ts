@@ -1,8 +1,8 @@
 import {gql} from '@apollo/client';
 
 export const fetchDataQuery = gql`
-  query getRocketsData {
-    launchesPast {
+  query getRocketsData($offset: Int) {
+    launchesPast(limit: 20, offset: $offset) {
       mission_name
       launch_site {
         site_name_long

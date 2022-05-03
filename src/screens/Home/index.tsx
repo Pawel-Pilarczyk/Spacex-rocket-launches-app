@@ -11,20 +11,22 @@ import {ROUTES} from 'src/constants/routes';
 const STEP = 20;
 
 const Home = ({navigation}: TScreenProps) => {
-  const [searchedData, setSearchedData] = useState<Array<TLaunch>>();
+  // const [searchedData, setSearchedData] = useState<Array<TLaunch>>();
   const [offset, setOffset] = useState(0);
   const [search, setSearch] = useState<string>();
-  const {data, loading, error} = useQuery<TLaunchesData>(fetchDataQuery);
+  const {data, loading, error} = useQuery<TLaunchesData>(fetchDataQuery, {
+    variables: {
+      offset,
+    },
+  });
 
   const buttonPreviousDisabled = offset === 0;
-  const buttonNextDisabled = data?.launchesPast
-    ? offset + STEP >= data?.launchesPast?.length
-    : false;
+  const buttonNextDisabled = !data?.launchesPast.length;
 
   const handleSetSearch = (newStr: string) => setSearch(newStr);
 
   const handleSetOffsetNext = () => {
-    setOffset(value => (data?.launchesPast.length ? value + STEP : value));
+    setOffset(value => value + STEP);
   };
 
   const handleSetOffsetPrevious = () =>
@@ -33,18 +35,18 @@ const Home = ({navigation}: TScreenProps) => {
   const handleNavigateToDetails = (launchData: TLaunch) => () =>
     navigation.navigate(ROUTES.DETAILS, {launchData});
 
-  useEffect(() => {
-    if (search) {
-      setSearchedData(
-        data?.launchesPast.filter(item =>
-          item.mission_name.toLowerCase().includes(search.toLowerCase()),
-        ),
-      );
-    } else {
-      setSearchedData(undefined);
-      setSearch(undefined);
-    }
-  }, [data?.launchesPast, search]);
+  // useEffect(() => {
+  //   if (search) {
+  //     setSearchedData(
+  //       data?.launchesPast.filter(item =>
+  //         item.mission_name.toLowerCase().includes(search.toLowerCase()),
+  //       ),
+  //     );
+  //   } else {
+  //     setSearchedData(undefined);
+  //     setSearch(undefined);
+  //   }
+  // }, [data?.launchesPast, search]);
 
   if (loading) {
     return <ModalLoader />;
@@ -62,35 +64,14 @@ const Home = ({navigation}: TScreenProps) => {
         type="search"
       />
       <ScrollView>
-        {search ? (
-          searchedData?.length ? (
-            searchedData.map(item => {
-              return (
-                <Item
-                  data={item}
-                  key={item.id}
-                  onPress={handleNavigateToDetails(item)}
-                />
-              );
-            })
-          ) : (
-            <Typography style={styles.noData} size="32" type="bold">
-              No Data
-            </Typography>
-          )
-        ) : data?.launchesPast?.length &&
-          offset <= data?.launchesPast?.length ? (
-          data.launchesPast.map((item, index) => {
-            if (index >= offset && index < offset + STEP) {
-              return (
-                <Item
-                  data={item}
-                  key={item.id}
-                  onPress={handleNavigateToDetails(item)}
-                />
-              );
-            }
-          })
+        {data?.launchesPast?.length ? (
+          data.launchesPast.map(item => (
+            <Item
+              data={item}
+              key={item.id}
+              onPress={handleNavigateToDetails(item)}
+            />
+          ))
         ) : (
           <Typography style={styles.noData} size="32" type="bold">
             No Data
@@ -101,14 +82,14 @@ const Home = ({navigation}: TScreenProps) => {
         <Button
           onPress={handleSetOffsetPrevious}
           style={styles.button}
-          disabled={buttonPreviousDisabled || !!searchedData}
+          disabled={buttonPreviousDisabled}
           testID="buttonPrevious">
           Previous
         </Button>
         <Button
           onPress={handleSetOffsetNext}
           type="outline"
-          disabled={buttonNextDisabled || !!searchedData}
+          disabled={buttonNextDisabled}
           testID="buttonNext">
           Next
         </Button>
