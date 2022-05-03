@@ -11,9 +11,9 @@ import {ROUTES} from 'src/constants/routes';
 const STEP = 20;
 
 const Home = ({navigation}: TScreenProps) => {
-  // const [searchedData, setSearchedData] = useState<Array<TLaunch>>();
+  const [searchedData, setSearchedData] = useState<Array<TLaunch>>();
   const [offset, setOffset] = useState(0);
-  const [search, setSearch] = useState<string>();
+  const [search, setSearch] = useState('');
   const {data, loading, error} = useQuery<TLaunchesData>(fetchDataQuery, {
     variables: {
       offset,
@@ -35,18 +35,17 @@ const Home = ({navigation}: TScreenProps) => {
   const handleNavigateToDetails = (launchData: TLaunch) => () =>
     navigation.navigate(ROUTES.DETAILS, {launchData});
 
-  // useEffect(() => {
-  //   if (search) {
-  //     setSearchedData(
-  //       data?.launchesPast.filter(item =>
-  //         item.mission_name.toLowerCase().includes(search.toLowerCase()),
-  //       ),
-  //     );
-  //   } else {
-  //     setSearchedData(undefined);
-  //     setSearch(undefined);
-  //   }
-  // }, [data?.launchesPast, search]);
+  useEffect(() => {
+    if (search) {
+      setSearchedData(
+        data?.launchesPast.filter(item =>
+          item.mission_name.toLowerCase().includes(search.toLowerCase()),
+        ),
+      );
+    } else {
+      setSearchedData(undefined);
+    }
+  }, [data?.launchesPast, search]);
 
   if (loading) {
     return <ModalLoader />;
@@ -59,12 +58,26 @@ const Home = ({navigation}: TScreenProps) => {
     <ScrollView contentContainerStyle={styles.wrapper} testID="homeScreen">
       <Input
         placeholder="Search"
-        value={search || ''}
+        value={search}
         setValue={handleSetSearch}
         type="search"
       />
       <ScrollView>
-        {data?.launchesPast?.length ? (
+        {search ? (
+          searchedData?.length ? (
+            searchedData.map(item => (
+              <Item
+                data={item}
+                key={item.id}
+                onPress={handleNavigateToDetails(item)}
+              />
+            ))
+          ) : (
+            <Typography style={styles.noData} size="32" type="bold">
+              No Data
+            </Typography>
+          )
+        ) : data?.launchesPast?.length ? (
           data.launchesPast.map(item => (
             <Item
               data={item}
