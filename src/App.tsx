@@ -14,6 +14,7 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+
   return (
     <ApolloProvider client={client}>
       <RootNavigation />
