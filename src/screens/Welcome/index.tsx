@@ -1,13 +1,45 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle,
+  withRepeat,
+} from 'react-native-reanimated';
 import {COLORS} from 'src/constants/colors';
 import {ROUTES} from 'src/constants/routes';
 import {scaling} from 'src/styles/scaling';
-import {Rocket} from 'src/assets/svg';
+import {Globe, RocketSuccess} from 'src/assets/svg';
 import {Typography, Button} from 'src/components';
 import {TScreenProps} from 'src/types';
 
 const Welcome = ({navigation}: TScreenProps) => {
+  const rocketAnimationValue = useSharedValue(0);
+  const globeAnimationValue = useSharedValue(0);
+
+  const rocketAnimation = useAnimatedStyle(() => {
+    return {
+      transform: [{rotate: `${rocketAnimationValue.value}deg`}],
+    };
+  });
+  const globeAnimation = useAnimatedStyle(() => {
+    return {
+      transform: [{rotate: `${globeAnimationValue.value}deg`}],
+    };
+  });
+
+  useEffect(() => {
+    rocketAnimationValue.value = withRepeat(
+      withTiming(360, {duration: 10000}),
+      Infinity,
+    );
+    globeAnimationValue.value = withRepeat(
+      withTiming(-360, {duration: 20000}),
+      Infinity,
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleNavigation = () => navigation.navigate(ROUTES.HOME);
   return (
     <View style={styles.wrapper}>
@@ -17,7 +49,15 @@ const Welcome = ({navigation}: TScreenProps) => {
       <Typography size="18" style={styles.paragraph}>
         Follow the latest SpaceX rocket launches with just one click
       </Typography>
-      <Rocket width={'75%'} height={'60%'} testID="rocketSVG" />
+      <View style={styles.animatedView}>
+        <Animated.View style={[globeAnimation, styles.animatedGlobe]}>
+          <Globe testID="rocketSVG" />
+        </Animated.View>
+        <Animated.View style={[rocketAnimation, styles.animatedRocket]}>
+          <RocketSuccess />
+        </Animated.View>
+      </View>
+
       <Button style={styles.button} onPress={handleNavigation}>
         Let's get Started!
       </Button>
@@ -44,5 +84,18 @@ const styles = StyleSheet.create({
     marginTop: scaling.vs(20),
     marginBottom: scaling.vs(40),
     textAlign: 'center',
+  },
+  animatedView: {
+    width: '60%',
+    height: '60%',
+  },
+  animatedGlobe: {
+    width: '100%',
+    height: '100%',
+  },
+  animatedRocket: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
   },
 });

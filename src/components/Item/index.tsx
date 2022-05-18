@@ -1,5 +1,12 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import Animated, {
+  SlideInRight,
+  SlideOutLeft,
+  Layout,
+  SlideInLeft,
+  SlideOutRight,
+} from 'react-native-reanimated';
 import {TLaunch} from 'src/types/index';
 import {COLORS} from 'src/constants/colors';
 import {scaling} from 'src/styles/scaling';
@@ -9,34 +16,49 @@ import {RocketFailure, RocketSuccess, Arrow} from 'src/assets/svg';
 type Props = {
   data: TLaunch;
   onPress: () => void;
+  index?: number;
+  nextPressed?: boolean;
 };
 
-const Item = ({data, onPress}: Props) => {
+const Item = ({data, onPress, index, nextPressed}: Props) => {
   const {mission_name, launch_success} = data;
   return (
-    <TouchableOpacity onPress={onPress} testID="itemID">
-      <View
-        style={[
-          styles.wrapper,
-          launch_success ? styles.lineSuccess : styles.lineError,
-        ]}>
-        <View style={styles.titleWrapper}>
-          {launch_success ? (
-            <RocketSuccess width={25} height={25} testID="rocketSuccess" />
-          ) : (
-            <RocketFailure width={25} height={25} testID="rocketFailure" />
-          )}
-          <Typography
-            color={COLORS.WHITE}
-            size="14"
-            type="bold"
-            style={styles.spacer}>
-            {mission_name}
-          </Typography>
+    <Animated.View
+      entering={
+        nextPressed
+          ? SlideInRight.delay(index ? index * 140 : 0)
+          : SlideInLeft.delay(index ? index * 140 : 0)
+      }
+      exiting={
+        nextPressed
+          ? SlideOutLeft.delay(index ? index * 100 : 0)
+          : SlideOutRight.delay(index ? index * 100 : 0)
+      }
+      layout={Layout.springify()}>
+      <TouchableOpacity onPress={onPress} testID="itemID">
+        <View
+          style={[
+            styles.wrapper,
+            launch_success ? styles.lineSuccess : styles.lineError,
+          ]}>
+          <View style={styles.titleWrapper}>
+            {launch_success ? (
+              <RocketSuccess width={25} height={25} testID="rocketSuccess" />
+            ) : (
+              <RocketFailure width={25} height={25} testID="rocketFailure" />
+            )}
+            <Typography
+              color={COLORS.WHITE}
+              size="14"
+              type="bold"
+              style={styles.spacer}>
+              {mission_name}
+            </Typography>
+          </View>
+          <Arrow testID="arrowIcon" />
         </View>
-        <Arrow testID="arrowIcon" />
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </Animated.View>
   );
 };
 

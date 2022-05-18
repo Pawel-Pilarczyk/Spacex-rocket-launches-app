@@ -23,7 +23,7 @@ export default ModalLoader;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: 'rgba(256, 256, 256, 0.9)',
+    backgroundColor: 'rgba(256, 256, 256, 1)',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -14,6 +14,7 @@ const Home = ({navigation}: TScreenProps) => {
   const [searchedData, setSearchedData] = useState<Array<TLaunch>>();
   const [offset, setOffset] = useState(0);
   const [search, setSearch] = useState('');
+  const [nextPressed, setNextPressed] = useState(false);
   const {data, loading, error} = useQuery<TLaunchesData>(fetchDataQuery, {
     variables: {
       offset,
@@ -27,10 +28,13 @@ const Home = ({navigation}: TScreenProps) => {
 
   const handleSetOffsetNext = () => {
     setOffset(value => value + STEP);
+    setNextPressed(true);
   };
 
-  const handleSetOffsetPrevious = () =>
+  const handleSetOffsetPrevious = () => {
     setOffset(value => (value > 0 ? value - STEP : value));
+    setNextPressed(false);
+  };
 
   const handleNavigateToDetails = (launchData: TLaunch) => () =>
     navigation.navigate(ROUTES.DETAILS, {launchData});
@@ -47,15 +51,13 @@ const Home = ({navigation}: TScreenProps) => {
     }
   }, [data?.launchesPast, search]);
 
-  if (loading) {
-    return <ModalLoader />;
-  }
   if (error) {
     navigation.navigate(ROUTES.ERROR);
   }
 
   return (
     <ScrollView contentContainerStyle={styles.wrapper} testID="homeScreen">
+      {loading ? <ModalLoader /> : null}
       <Input
         placeholder="Search"
         value={search}
@@ -65,11 +67,13 @@ const Home = ({navigation}: TScreenProps) => {
       <ScrollView>
         {search ? (
           searchedData?.length ? (
-            searchedData.map(item => (
+            searchedData.map((item, index) => (
               <Item
                 data={item}
                 key={item.id}
                 onPress={handleNavigateToDetails(item)}
+                index={index}
+                nextPressed={nextPressed}
               />
             ))
           ) : (
@@ -78,11 +82,13 @@ const Home = ({navigation}: TScreenProps) => {
             </Typography>
           )
         ) : data?.launchesPast?.length ? (
-          data.launchesPast.map(item => (
+          data.launchesPast.map((item, index) => (
             <Item
               data={item}
               key={item.id}
               onPress={handleNavigateToDetails(item)}
+              index={index}
+              nextPressed={nextPressed}
             />
           ))
         ) : (
