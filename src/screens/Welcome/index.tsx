@@ -40,7 +40,7 @@ const Welcome = ({navigation}: TScreenProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleNavigation = () => navigation.navigate(ROUTES.HOME);
+  const handleNavigation = () => navigation.navigate(ROUTES.GESTURE_ANIMATION);
   return (
     <View style={styles.wrapper}>
       <Typography size="40" type="bold">

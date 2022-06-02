@@ -26,13 +26,13 @@ const Item = ({data, onPress, index, nextPressed}: Props) => {
     <Animated.View
       entering={
         nextPressed
-          ? SlideInRight.delay(index ? index * 140 : 0)
-          : SlideInLeft.delay(index ? index * 140 : 0)
+          ? SlideInRight.delay(index ? index * 40 : 0)
+          : SlideInLeft.delay(index ? index * 40 : 0)
       }
       exiting={
         nextPressed
-          ? SlideOutLeft.delay(index ? index * 100 : 0)
-          : SlideOutRight.delay(index ? index * 100 : 0)
+          ? SlideOutLeft.delay(index ? index * 20 : 0)
+          : SlideOutRight.delay(index ? index * 20 : 0)
       }
       layout={Layout.springify()}>
       <TouchableOpacity onPress={onPress} testID="itemID">
@@ -62,7 +62,14 @@ const Item = ({data, onPress, index, nextPressed}: Props) => {
   );
 };
 
-export default Item;
+function areEqual(
+  prevProps: Record<string, any>,
+  nextProps: Record<string, any>,
+) {
+  return nextProps === prevProps ? true : false;
+}
+
+export default React.memo(Item, areEqual);
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -21,8 +21,8 @@ const Home = ({navigation}: TScreenProps) => {
     },
   });
 
-  const buttonPreviousDisabled = offset === 0;
-  const buttonNextDisabled = !data?.launchesPast.length;
+  const buttonPreviousDisabled = offset === 0 || !!search;
+  const buttonNextDisabled = !data?.launchesPast.length || !!search;
 
   const handleSetSearch = (newStr: string) => setSearch(newStr);
 
@@ -43,7 +43,7 @@ const Home = ({navigation}: TScreenProps) => {
     if (search) {
       setSearchedData(
         data?.launchesPast.filter(item =>
-          item.mission_name.toLowerCase().includes(search.toLowerCase()),
+          item.mission_name.toLowerCase().startsWith(search.toLowerCase()),
         ),
       );
     } else {
